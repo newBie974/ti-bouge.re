@@ -1,0 +1,16 @@
+---
+interface Props { items: string[] }
+const { items } = Astro.props
+---
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    {[...items, ...items].map((it) => <span class="num">{it}</span>)}
+  </div>
+</div>
+<style>
+  .ticker { overflow: hidden; background: var(--cream-low); border-block: 1px solid var(--ink-line); }
+  .track { display: flex; gap: var(--sp-xxl); white-space: nowrap; padding: var(--sp-md) 0; animation: scroll 30s linear infinite; }
+  .track span { font-size: 14px; color: var(--ink-soft); }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .track { animation: none; flex-wrap: wrap; white-space: normal; } }
+</style>
