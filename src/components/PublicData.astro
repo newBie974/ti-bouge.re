@@ -1,0 +1,38 @@
+---
+import Section from './Section.astro'
+import { SOURCES } from '../config'
+---
+<Section id="donnees" title="Des données publiques, rien de caché">
+  <div class="data">
+    <div class="data-text">
+      <p>
+        Les prix viennent des <strong>mercuriales officielles de la DAAF Réunion</strong>
+        (Direction de l'alimentation, de l'agriculture et de la forêt) : des relevés publics
+        des marchés forains et des grandes surfaces. C'est de l'<em>open data</em> — libre,
+        vérifiable, réutilisé sous <strong>licence etalab 2.0</strong>.
+      </p>
+      <p>
+        On ne fixe aucun prix et on n'en invente aucun. On lit la donnée publique, on
+        l'historise pour en sortir la saisonnalité, et on affiche toujours la date réelle du
+        relevé. Tu peux vérifier à la source.
+      </p>
+      <p class="sources num">
+        Sources :
+        <a href={SOURCES.mercuriales} target="_blank" rel="noopener">Mercuriales DAAF Réunion</a>
+        ·
+        <a href={SOURCES.daaf} target="_blank" rel="noopener">daaf.reunion.agriculture.gouv.fr</a>
+        ·
+        <a href={SOURCES.etalab} target="_blank" rel="noopener">Licence etalab 2.0</a>
+      </p>
+    </div>
+    <img class="data-img" src="/thinking.png" alt="Ti Boug qui réfléchit" width="500" height="500" loading="lazy" />
+  </div>
+</Section>
+<style>
+  .data { display: flex; gap: var(--sp-xxl); align-items: center; flex-wrap: wrap; }
+  .data-text { flex: 1 1 320px; }
+  .data-text p { margin-bottom: var(--sp-md); }
+  .sources { font-size: 12px; color: var(--ink-soft); margin-top: var(--sp-lg); }
+  .sources a { color: var(--mango-deep); }
+  .data-img { flex: 0 0 180px; width: 180px; height: auto; }
+</style>

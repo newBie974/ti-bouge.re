@@ -1,7 +1,11 @@
 ---
-import { DAAF_ATTRIBUTION } from '../config'
+import { DAAF_ATTRIBUTION, SOURCES } from '../config'
 ---
-<p class="attribution num">{DAAF_ATTRIBUTION}</p>
+<p class="attribution num">
+  <a href={SOURCES.daaf} target="_blank" rel="noopener">{DAAF_ATTRIBUTION}</a>
+</p>
 <style>
   .attribution { font-size: 12px; color: var(--ink-soft); }
+  .attribution a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .attribution a:hover { color: var(--mango-deep); }
 </style>

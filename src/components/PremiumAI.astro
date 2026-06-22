@@ -1,0 +1,39 @@
+---
+import Section from './Section.astro'
+---
+<Section id="ia" title="Ton assistant marché péi">
+  <div class="premium">
+    <img class="premium-img" src="/basket.png" alt="Ti Boug avec son panier" width="500" height="500" loading="lazy" />
+    <div class="premium-text">
+      <p>
+        « Kosa ou i vé manzé ? » Tu dis ce que tu veux cuisiner, et l'assistant IA compose ton
+        panier avec les produits les moins chers et de saison du jour — à partir des prix réels.
+      </p>
+      <ul class="benefits">
+        <li>Compose ton panier dans ton budget, recettes incluses.</li>
+        <li>Discute, ajuste en parlant, garde tes paniers préférés.</li>
+      </ul>
+      <p class="premium-note num">
+        <span class="badge">Premium 💚</span> 2 paniers offerts pour essayer, puis Panier IA illimité.
+      </p>
+    </div>
+  </div>
+</Section>
+<style>
+  .premium { display: flex; gap: var(--sp-xxl); align-items: center; flex-wrap: wrap; }
+  .premium-text { flex: 1 1 320px; }
+  .premium-img { flex: 0 0 240px; width: 240px; height: auto; }
+  .benefits { margin: var(--sp-md) 0; padding-left: var(--sp-lg); }
+  .benefits li { margin-bottom: var(--sp-sm); }
+  .premium-note { font-size: 13px; color: var(--ink-soft); margin-top: var(--sp-lg); }
+  .badge {
+    display: inline-block;
+    background: var(--leaf-soft);
+    color: var(--leaf);
+    font-family: var(--font-body);
+    font-weight: 700;
+    padding: 2px var(--sp-sm);
+    border-radius: var(--radius-pill);
+    margin-right: var(--sp-sm);
+  }
+</style>

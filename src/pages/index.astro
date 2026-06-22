@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro'
 import Section from '../components/Section.astro'
 import AppStoreButton from '../components/AppStoreButton.astro'
 import Ticker from '../components/Ticker.astro'
+import PublicData from '../components/PublicData.astro'
+import PremiumAI from '../components/PremiumAI.astro'
 import Attribution from '../components/Attribution.astro'
 import { SITE } from '../config'
 
@@ -10,11 +12,14 @@ const tickerItems = ['Tomate 2,40 €/kg ▾', 'Mangue 3,10 €/kg ▾', 'Brède
 ---
 <Layout title={SITE.name} description={SITE.description}>
   <header class="hero">
-    <div class="container">
-      <p class="kicker num">Bonzour 👋 La Réunion</p>
-      <h1>Sak i lé bon marché,<br />kan, é ousa.</h1>
-      <p class="lede">Les prix des fruits & légumes à La Réunion, leur saisonnalité, et un panier malin composé par IA — à partir des mercuriales officielles.</p>
-      <AppStoreButton />
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="kicker num">Bonzour 👋 La Réunion</p>
+        <h1>Sak i lé bon marché,<br />kan, é ousa.</h1>
+        <p class="lede">Les prix des fruits & légumes à La Réunion, leur saisonnalité, et un panier malin composé par IA — à partir des mercuriales officielles.</p>
+        <AppStoreButton />
+      </div>
+      <img class="hero-img" src="/mascot.png" alt="Ti Boug, la mascotte de Bazar Péi" width="720" height="720" />
     </div>
   </header>
 
@@ -29,13 +34,18 @@ const tickerItems = ['Tomate 2,40 €/kg ▾', 'Mangue 3,10 €/kg ▾', 'Brède
     <p class="price-down num">Prix en baisse = bonne nouvelle (vert) · prix en hausse = alerte (rouge).</p>
   </Section>
 
-  <Section id="ia" title="Kosa ou i vé manzé ?">
-    <p>L'assistant IA compose un panier selon les prix du jour : tu dis ce que tu veux manger, il te propose les produits les moins chers et de saison.</p>
-  </Section>
+  <PublicData />
+
+  <PremiumAI />
 
   <Section id="apercu" title="L'app">
-    <p>Disponible sur iPhone. Conçue pour La Réunion, en français et en kréol.</p>
-    <AppStoreButton />
+    <div class="app">
+      <img class="app-img" src="/avatar.png" alt="Avatar Ti Boug" width="500" height="500" loading="lazy" />
+      <div>
+        <p>Disponible sur iPhone. Conçue pour La Réunion, en français et en kréol.</p>
+        <AppStoreButton />
+      </div>
+    </div>
   </Section>
 
   <footer class="footer">
@@ -48,9 +58,14 @@ const tickerItems = ['Tomate 2,40 €/kg ▾', 'Mangue 3,10 €/kg ▾', 'Brède
 
 <style>
   .hero { padding: var(--sp-huge) 0; }
+  .hero-grid { display: flex; gap: var(--sp-xxl); align-items: center; flex-wrap: wrap; }
+  .hero-text { flex: 1 1 320px; }
+  .hero-img { flex: 0 0 300px; width: 300px; height: auto; max-width: 100%; }
   .kicker { font-size: 13px; color: var(--mango-deep); margin-bottom: var(--sp-md); }
   h1 { font-size: clamp(36px, 8vw, 64px); margin-bottom: var(--sp-lg); }
   .lede { font-size: 18px; color: var(--ink-soft); max-width: 36ch; margin-bottom: var(--sp-xl); }
+  .app { display: flex; gap: var(--sp-xl); align-items: center; flex-wrap: wrap; }
+  .app-img { flex: 0 0 140px; width: 140px; height: auto; }
   .footer { padding: var(--sp-xxl) 0; border-top: 1px solid var(--ink-line); }
   .footer p { font-size: 12px; color: var(--ink-soft); margin-top: var(--sp-sm); }
 </style>
