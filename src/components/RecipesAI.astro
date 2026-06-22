@@ -1,5 +1,6 @@
 ---
 import Section from './Section.astro'
+import ChatDemo from './ChatDemo.astro'
 interface Props { bg?: 'cream' | 'low' | 'paper'; eyebrow?: string }
 const { bg = 'cream', eyebrow } = Astro.props
 const recipes = ['Rougail saucisse', 'Cari poulet', 'Achards légumes', 'Gratin chouchou', 'Bouchons', 'Sauté mine']
@@ -17,13 +18,12 @@ const recipes = ['Rougail saucisse', 'Cari poulet', 'Achards légumes', 'Gratin 
       </ul>
       <p class="note num">« Kosa ou i vé manzé ? » → ton repas, dans ton budget. 🍛</p>
     </div>
-    <img class="recipes-img" src="/thinking.png" alt="Recettes péi générées par IA selon les prix du jour" width="500" height="500" loading="lazy" />
+    <ChatDemo />
   </div>
 </Section>
 <style>
   .recipes { display: flex; gap: var(--sp-xxl); align-items: flex-start; flex-wrap: wrap; }
-  .recipes-text { flex: 1 1 320px; }
-  .recipes-img { width: 240px; height: 240px; object-fit: contain; flex: none; order: 2; }
+  .recipes-text { flex: 1 1 300px; }
   .chips { list-style: none; display: flex; flex-wrap: wrap; gap: var(--sp-sm); margin: var(--sp-lg) 0; padding: 0; }
   .chip {
     background: var(--mango); color: var(--ink);

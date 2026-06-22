@@ -1,0 +1,86 @@
+---
+// Démo statique du chat assistant (comme dans l'app). Conversation d'illustration : rougail saucisse.
+const basket = [
+  { name: 'Saucisses fumées', price: '4,90 €', down: false },
+  { name: 'Tomates (500 g)', price: '1,20 €', down: true },
+  { name: 'Oignons', price: '0,60 €', down: false },
+  { name: 'Ail · gingembre · piment', price: '0,80 €', down: false },
+]
+---
+<div class="chat" role="img" aria-label="Exemple de conversation avec l'assistant Ti Boug : recette de rougail saucisse et son panier au meilleur prix.">
+  <div class="chat-head">
+    <img class="chat-av" src="/avatar.png" alt="" width="40" height="40" />
+    <div>
+      <p class="chat-name">Ti Boug</p>
+      <p class="chat-sub num"><span class="dot"></span> assistant marché · en ligne</p>
+    </div>
+  </div>
+
+  <div class="msgs">
+    <div class="bubble user">Fé moin in rougail saucisse pou 4, pa shé ! 🌶️</div>
+
+    <div class="bubble bot">
+      Bon plan 💪 Avec les prix du jour, voilà ton panié :
+      <div class="card">
+        <ul>
+          {basket.map((b) => (
+            <li class="row">
+              <span class="bn">{b.name}</span>
+              <span class="lead"></span>
+              <span class={`bp num ${b.down ? 'price-down' : ''}`}>{b.price}{b.down ? ' ▾' : ''}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="row total">
+          <span class="bn">Total estimé</span>
+          <span class="lead"></span>
+          <span class="bp num">≈ 7,50 € · 1,90 €/pers</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble bot">
+      <strong>Rougail saucisse</strong>
+      <span class="steps">1. Fé bouï les saucisses 10 min, koup an rondèl.<br />2. Roussi l'oignon, ajout tomate, ail, gingembre, piment.<br />3. Mélanz les saucisses, kui 15 min. Ansanm èk du riz é grin. 💚</span>
+    </div>
+  </div>
+
+  <div class="chat-input" aria-hidden="true">
+    <span class="ci-ph num">Kosa ou i vé manzé ?</span>
+    <span class="ci-send">➤</span>
+  </div>
+</div>
+<style>
+  .chat {
+    width: 100%; max-width: 440px;
+    background: var(--paper);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 24px rgba(30, 27, 22, 0.08);
+    overflow: hidden;
+  }
+  .chat-head { display: flex; align-items: center; gap: var(--sp-sm); padding: var(--sp-md) var(--sp-lg); border-bottom: 1px solid var(--ink-line); }
+  .chat-av { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--cream-low); object-fit: contain; }
+  .chat-name { font-family: var(--font-display); font-weight: 800; font-size: 16px; }
+  .chat-sub { font-size: 11px; color: var(--ink-soft); }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--leaf); margin-right: 4px; }
+
+  .msgs { display: flex; flex-direction: column; gap: var(--sp-sm); padding: var(--sp-lg); }
+  .bubble { max-width: 88%; padding: var(--sp-sm) var(--sp-md); border-radius: 16px; font-size: 14px; line-height: 1.5; }
+  .user { align-self: flex-end; background: var(--mango); color: var(--ink); font-weight: 600; border-bottom-right-radius: 4px; }
+  .bot { align-self: flex-start; background: var(--cream-low); border: 1px solid var(--ink-line); border-bottom-left-radius: 4px; }
+  .steps { display: block; margin-top: var(--sp-sm); color: var(--ink-soft); }
+
+  .card { margin-top: var(--sp-sm); background: var(--paper); border: 1px solid var(--ink-line); border-radius: var(--radius-md); padding: var(--sp-sm) var(--sp-md); }
+  .card ul { list-style: none; }
+  .row { display: flex; align-items: baseline; gap: var(--sp-sm); padding: 3px 0; font-size: 13px; }
+  .bn { white-space: nowrap; }
+  .lead { flex: 1; border-bottom: 2px dotted var(--ink-line); transform: translateY(-3px); }
+  .bp { white-space: nowrap; font-weight: 600; }
+  .total { border-top: 1px solid var(--ink-line); margin-top: 4px; padding-top: var(--sp-sm); }
+  .total .bn { font-weight: 700; }
+
+  .chat-input { display: flex; align-items: center; gap: var(--sp-sm); padding: var(--sp-sm) var(--sp-md); border-top: 1px solid var(--ink-line); }
+  .ci-ph { flex: 1; font-size: 13px; color: var(--ink-soft); background: var(--cream-low); border-radius: var(--radius-pill); padding: var(--sp-sm) var(--sp-md); }
+  .ci-send { display: grid; place-items: center; width: 34px; height: 34px; border-radius: var(--radius-pill); background: var(--mango); color: var(--ink); flex: none; }
+</style>
