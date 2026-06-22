@@ -1,7 +1,9 @@
 ---
 import Section from './Section.astro'
+interface Props { bg?: 'cream' | 'low' | 'paper' }
+const { bg = 'cream' } = Astro.props
 ---
-<Section id="ia" title="Ton assistant marché péi">
+<Section id="ia" title="Ton assistant marché péi" bg={bg}>
   <div class="premium">
     <img class="premium-img" src="/basket.png" alt="Ti Boug avec son panier" width="500" height="500" loading="lazy" />
     <div class="premium-text">
@@ -20,7 +22,7 @@ import Section from './Section.astro'
   </div>
 </Section>
 <style>
-  .premium { display: flex; gap: var(--sp-xxl); align-items: center; flex-wrap: wrap; }
+  .premium { display: flex; gap: var(--sp-xxl); align-items: flex-start; flex-wrap: wrap; }
   .premium-text { flex: 1 1 320px; }
   .premium-img { width: 260px; height: 260px; object-fit: contain; flex: none; }
   .benefits { margin: var(--sp-md) 0; padding-left: var(--sp-lg); }

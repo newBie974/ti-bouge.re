@@ -1,8 +1,10 @@
 ---
 import Section from './Section.astro'
 import { SOURCES } from '../config'
+interface Props { bg?: 'cream' | 'low' | 'paper' }
+const { bg = 'low' } = Astro.props
 ---
-<Section id="donnees" title="Des données publiques, rien de caché" bg="low">
+<Section id="donnees" title="Des données publiques, rien de caché" bg={bg}>
   <div class="data">
     <img class="data-img" src="/season.png" alt="Ti Boug et la saisonnalité" width="500" height="500" loading="lazy" />
     <div class="data-text">
@@ -29,7 +31,7 @@ import { SOURCES } from '../config'
   </div>
 </Section>
 <style>
-  .data { display: flex; gap: var(--sp-xxl); align-items: center; flex-wrap: wrap; }
+  .data { display: flex; gap: var(--sp-xxl); align-items: flex-start; flex-wrap: wrap; }
   .data-img { width: 200px; height: 200px; object-fit: contain; flex: none; }
   .data-text { flex: 1 1 320px; }
   .data-text p { margin-bottom: var(--sp-md); }

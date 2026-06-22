@@ -6,6 +6,7 @@ import Ticker from '../components/Ticker.astro'
 import BazarPreview from '../components/BazarPreview.astro'
 import PublicData from '../components/PublicData.astro'
 import PremiumAI from '../components/PremiumAI.astro'
+import RecipesAI from '../components/RecipesAI.astro'
 import Attribution from '../components/Attribution.astro'
 import { SITE } from '../config'
 
@@ -37,21 +38,32 @@ const tickerItems = ['Tomate 2,40 €/kg ▾', 'Mangue 3,10 €/kg ▾', 'Brède
 
   <Section id="probleme" title="La vie chère, légume par légume" bg="low">
     <div class="split">
-      <img class="split-img" src="/market.png" alt="Marché forain péi" width="500" height="500" loading="lazy" />
+      <img class="split-img" src="/compare.png" alt="Comparer les prix" width="500" height="500" loading="lazy" />
       <div class="split-text">
         <p>À La Réunion, le prix des fruits & légumes varie fort d'une semaine et d'un marché à l'autre. Ti Boug te dit ce qui est bon marché aujourd'hui, quand c'est la pleine saison, et où l'acheter.</p>
       </div>
     </div>
   </Section>
 
-  <Section id="comment" title="Comment ça marche" bg="cream">
+  <Section id="forain" title="Au marché forain" bg="cream">
+    <div class="split">
+      <div class="split-text">
+        <p>À La Réunion, les meilleurs prix sur les fruits & légumes se trouvent souvent au <strong>marché forain</strong> — Saint-Paul, Saint-Pierre, Saint-Denis… Les mercuriales DAAF couvrent justement les marchés forains <em>et</em> les grandes surfaces : Ti Boug compare les deux et te montre où, aujourd'hui, le panier est le plus avantageux.</p>
+      </div>
+      <img class="split-img" src="/market.png" alt="Marché forain péi" width="500" height="500" loading="lazy" />
+    </div>
+  </Section>
+
+  <Section id="comment" title="Comment ça marche" bg="low">
     <p>Chaque jour, on lit les mercuriales de la DAAF Réunion, on les historise, et on en extrait la saisonnalité. La date réelle de cotation est toujours affichée — <strong>honnêteté sur la fraîcheur</strong>.</p>
     <p class="price-down num">Prix en baisse = bonne nouvelle (vert) · prix en hausse = alerte (rouge).</p>
   </Section>
 
-  <PublicData />
+  <PublicData bg="cream" />
 
-  <PremiumAI />
+  <PremiumAI bg="low" />
+
+  <RecipesAI bg="cream" />
 
   <Section id="apercu" title="L'app" bg="low">
     <div class="split">
@@ -79,7 +91,7 @@ const tickerItems = ['Tomate 2,40 €/kg ▾', 'Mangue 3,10 €/kg ▾', 'Brède
   .kicker { font-size: 13px; color: var(--mango-deep); margin-bottom: var(--sp-md); }
   h1 { font-size: clamp(36px, 8vw, 64px); margin-bottom: var(--sp-lg); }
   .lede { font-size: 18px; color: var(--ink-soft); max-width: 38ch; margin-bottom: var(--sp-xl); }
-  .split { display: flex; gap: var(--sp-xxl); align-items: center; flex-wrap: wrap; }
+  .split { display: flex; gap: var(--sp-xxl); align-items: flex-start; flex-wrap: wrap; }
   .split-text { flex: 1 1 320px; }
   .split-img { width: 240px; height: 240px; object-fit: contain; flex: none; }
   .split-img.small { width: 160px; height: 160px; }
