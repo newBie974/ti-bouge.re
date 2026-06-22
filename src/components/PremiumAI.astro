@@ -1,9 +1,9 @@
 ---
 import Section from './Section.astro'
-interface Props { bg?: 'cream' | 'low' | 'paper' }
-const { bg = 'cream' } = Astro.props
+interface Props { bg?: 'cream' | 'low' | 'paper'; eyebrow?: string }
+const { bg = 'cream', eyebrow } = Astro.props
 ---
-<Section id="ia" title="Ton assistant marché péi" bg={bg}>
+<Section id="ia" title="Ton assistant marché péi" bg={bg} eyebrow={eyebrow}>
   <div class="premium">
     <img class="premium-img" src="/basket.png" alt="Panier de fruits & légumes péi composé par l'assistant IA" width="500" height="500" loading="lazy" />
     <div class="premium-text">

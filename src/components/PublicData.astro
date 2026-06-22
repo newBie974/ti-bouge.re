@@ -1,10 +1,10 @@
 ---
 import Section from './Section.astro'
 import { SOURCES } from '../config'
-interface Props { bg?: 'cream' | 'low' | 'paper' }
-const { bg = 'low' } = Astro.props
+interface Props { bg?: 'cream' | 'low' | 'paper'; eyebrow?: string }
+const { bg = 'low', eyebrow } = Astro.props
 ---
-<Section id="donnees" title="Des données publiques, rien de caché" bg={bg}>
+<Section id="donnees" title="Des données publiques, rien de caché" bg={bg} eyebrow={eyebrow}>
   <div class="data">
     <img class="data-img" src="/season.png" alt="Saisonnalité des fruits & légumes à La Réunion" width="500" height="500" loading="lazy" />
     <div class="data-text">

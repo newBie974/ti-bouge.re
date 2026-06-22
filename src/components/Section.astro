@@ -1,9 +1,15 @@
 ---
-interface Props { id: string; title?: string; bg?: 'cream' | 'low' | 'paper' }
-const { id, title, bg = 'cream' } = Astro.props
+interface Props { id: string; title?: string; bg?: 'cream' | 'low' | 'paper'; eyebrow?: string }
+const { id, title, bg = 'cream', eyebrow } = Astro.props
 ---
-<section id={id} class={`bg-${bg}`}>
+<section id={id} class={`bg-${bg}`} data-reveal>
   <div class="container">
+    {eyebrow && (
+      <div class="eyebrow num">
+        <span class="eyebrow-label">{eyebrow}</span>
+        <span class="eyebrow-lead"></span>
+      </div>
+    )}
     {title && <h2>{title}</h2>}
     <slot />
   </div>
@@ -13,5 +19,8 @@ const { id, title, bg = 'cream' } = Astro.props
   .bg-cream { background: var(--cream); }
   .bg-low { background: var(--cream-low); }
   .bg-paper { background: var(--paper); }
+  .eyebrow { display: flex; align-items: center; gap: var(--sp-md); margin-bottom: var(--sp-md); }
+  .eyebrow-label { font-size: 12px; letter-spacing: 1px; color: var(--mango-deep); text-transform: uppercase; white-space: nowrap; }
+  .eyebrow-lead { flex: 1; border-bottom: 2px dotted var(--ink-line); transform: translateY(-2px); }
   h2 { font-size: clamp(24px, 4vw, 32px); margin-bottom: var(--sp-lg); }
 </style>

@@ -1,7 +1,7 @@
 ---
 import Section from './Section.astro'
-interface Props { bg?: 'cream' | 'low' | 'paper' }
-const { bg = 'cream' } = Astro.props
+interface Props { bg?: 'cream' | 'low' | 'paper'; eyebrow?: string }
+const { bg = 'cream', eyebrow } = Astro.props
 const faqs = [
   {
     q: 'Est-ce que Ti Boug est gratuit ?',
@@ -38,7 +38,7 @@ const jsonLd = {
   })),
 }
 ---
-<Section id="faq" title="Questions fréquentes" bg={bg}>
+<Section id="faq" title="Questions fréquentes" bg={bg} eyebrow={eyebrow}>
   <div class="faq">
     {faqs.map((f) => (
       <details class="item">
@@ -52,6 +52,15 @@ const jsonLd = {
 <style>
   .faq { max-width: 760px; }
   .item { border-bottom: 1px solid var(--ink-line); padding: var(--sp-md) 0; }
-  summary { font-weight: 700; cursor: pointer; list-style-position: inside; }
+  summary {
+    font-weight: 700; cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center; gap: var(--sp-md);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+'; font-family: var(--font-mono); color: var(--mango-deep);
+    font-size: 22px; line-height: 1; flex: none;
+  }
+  .item[open] summary::after { content: '−'; }
   .item p { margin-top: var(--sp-sm); color: var(--ink-soft); }
 </style>
