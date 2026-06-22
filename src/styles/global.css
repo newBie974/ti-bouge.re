@@ -43,6 +43,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 1.
 .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--sp-xl); }
 a { color: var(--mango-deep); }
 
+/* Texte de contenu « bien carré » : justifié, bords gauche+droite alignés, césure FR auto. */
+section p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+h1, h2, h3 { text-wrap: balance; }
+
 ::selection { background: var(--mango); color: var(--ink); }
 :focus-visible { outline: 2px solid var(--mango-deep); outline-offset: 3px; }
 
