@@ -6,7 +6,7 @@ export const SITE = {
   // Meta description (mot-clé en tête + accroche + CTA), ~158 car.
   description:
     'Suivez les prix des fruits & légumes à La Réunion : tendance, saisonnalité et ' +
-    'meilleurs marchés forains, d’après les mercuriales DAAF. App iPhone, gratuite, sans compte.',
+    'meilleurs marchés forains, d’après les mercuriales DAAF. App iPhone, gratuite.',
 } as const
 
 // L'app n'est pas encore confirmée publiée : placeholder. Remplacer par l'URL App Store réelle.

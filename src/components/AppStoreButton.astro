@@ -10,7 +10,7 @@ const pending = APP_STORE_URL === '#'
   {pending
     ? <span class="cta cta-pending">🍎 Bientôt sur l'App Store</span>
     : <a class="cta" href={APP_STORE_URL}>{label}</a>}
-  {note && <span class="cta-note num">Gratuit, sans compte</span>}
+  {note && <span class="cta-note num">Gratuit pour commencer</span>}
 </div>
 <style>
   .cta-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-md); }
