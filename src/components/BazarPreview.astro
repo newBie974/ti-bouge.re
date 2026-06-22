@@ -1,0 +1,58 @@
+---
+// Aperçu "produit" statique — reproduit les signatures du design system :
+// MercurialeRow + DottedLeader, FreshnessChip, SeasonSticker. Données d'illustration.
+const rows = [
+  { name: 'Tomate', price: '2,40 €/kg', trend: 'down', arrow: '▾', season: false },
+  { name: 'Mangue Carotte', price: '3,10 €/kg', trend: 'down', arrow: '▾', season: true },
+  { name: 'Brèdes chouchou', price: '1,80 €/botte', trend: 'flat', arrow: '', season: false },
+  { name: 'Letchi', price: '4,50 €/kg', trend: 'up', arrow: '▴', season: false },
+]
+---
+<div class="card">
+  <div class="card-head">
+    <span class="card-title">Bazar du jour</span>
+    <span class="chip num">Relevé · sam. 14 juin</span>
+  </div>
+  <ul class="rows">
+    {rows.map((r) => (
+      <li class="row">
+        <span class="name">
+          {r.name}
+          {r.season && <span class="sticker">Plin sézon ✓</span>}
+        </span>
+        <span class="leader"></span>
+        <span class={`price num price-${r.trend}`}>{r.price} {r.arrow}</span>
+      </li>
+    ))}
+  </ul>
+</div>
+<style>
+  .card {
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-xl);
+    box-shadow: 0 6px 24px rgba(30, 27, 22, 0.08);
+    border: 1px solid var(--ink-line);
+    max-width: 420px;
+  }
+  .card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-lg); }
+  .card-title { font-family: var(--font-display); font-weight: 800; font-size: 18px; }
+  .chip {
+    font-size: 11px; color: var(--ink-soft);
+    border: 1px dashed var(--ink-line); border-radius: var(--radius-pill);
+    padding: 2px var(--sp-sm);
+  }
+  .rows { list-style: none; }
+  .row { display: flex; align-items: baseline; padding: var(--sp-sm) 0; gap: var(--sp-sm); }
+  .name { font-weight: 500; white-space: nowrap; }
+  .leader { flex: 1; border-bottom: 2px dotted var(--ink-line); transform: translateY(-3px); }
+  .price { white-space: nowrap; font-weight: 600; }
+  .price-flat { color: var(--ink-soft); }
+  .sticker {
+    display: inline-block; margin-left: var(--sp-sm);
+    background: var(--leaf-soft); color: var(--leaf);
+    font-family: var(--font-body); font-size: 10px; font-weight: 700;
+    padding: 1px 6px; border-radius: 6px;
+    transform: rotate(-3deg);
+  }
+</style>

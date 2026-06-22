@@ -2,8 +2,9 @@
 import Section from './Section.astro'
 import { SOURCES } from '../config'
 ---
-<Section id="donnees" title="Des données publiques, rien de caché">
+<Section id="donnees" title="Des données publiques, rien de caché" bg="low">
   <div class="data">
+    <img class="data-img" src="/season.png" alt="Ti Boug et la saisonnalité" width="500" height="500" loading="lazy" />
     <div class="data-text">
       <p>
         Les prix viennent des <strong>mercuriales officielles de la DAAF Réunion</strong>
@@ -25,14 +26,13 @@ import { SOURCES } from '../config'
         <a href={SOURCES.etalab} target="_blank" rel="noopener">Licence etalab 2.0</a>
       </p>
     </div>
-    <img class="data-img" src="/thinking.png" alt="Ti Boug qui réfléchit" width="500" height="500" loading="lazy" />
   </div>
 </Section>
 <style>
   .data { display: flex; gap: var(--sp-xxl); align-items: center; flex-wrap: wrap; }
+  .data-img { width: 200px; height: 200px; object-fit: contain; flex: none; }
   .data-text { flex: 1 1 320px; }
   .data-text p { margin-bottom: var(--sp-md); }
   .sources { font-size: 12px; color: var(--ink-soft); margin-top: var(--sp-lg); }
   .sources a { color: var(--mango-deep); }
-  .data-img { flex: 0 0 180px; width: 180px; height: auto; }
 </style>
