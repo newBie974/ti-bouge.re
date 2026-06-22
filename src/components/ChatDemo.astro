@@ -1,6 +1,6 @@
 ---
-// Démo INTERACTIVE : 3 options cliquables. Au clic → message utilisateur, Ti Boug « réfléchit »,
-// puis enchaîne ses 3 outils (searchPrices → proposeBasket → loadSkill) avec faux chargement + réponse.
+// Démo INTERACTIVE : 3 options cliquables (en haut). Au clic → message utilisateur, Ti Boug
+// « réfléchit » puis enchaîne ses étapes (faux chargement spinner → ✓), panier, puis recette.
 // Séquence toujours identique (effet wouaou). Rejouable. Sans JS : tout s'affiche (fallback).
 const basket = [
   { name: 'Saucisses fumées', price: '4,90 €', down: false },
@@ -13,27 +13,34 @@ const options = [
   { chip: 'Plat pas cher ce soir 🍛', q: 'In plat pa shé pou ce soir, kosa ou propoz ? 🍛' },
   { chip: 'Kosa lé bon marché ? 💸', q: 'Kosa lé bon marché ojordi ? 💸' },
 ]
+const steps = [
+  { id: 't1', icon: '🔎', label: 'Je regarde les prix du jour' },
+  { id: 't2', icon: '🧺', label: 'Je compose ton panier' },
+  { id: 't3', icon: '📖', label: 'Je trouve la recette' },
+]
 ---
 <div class="chat" id="chatdemo">
   <div class="chat-head">
     <img class="chat-av" src="/avatar.png" alt="" width="40" height="40" />
     <div>
       <p class="chat-name">Ti Boug</p>
-      <p class="chat-sub num"><span class="dot"></span> assistant marché · 3 outils</p>
+      <p class="chat-sub num"><span class="dot"></span> assistant marché · en ligne</p>
     </div>
+  </div>
+
+  <div class="quick" id="chatquick">
+    {options.map((o) => <button class="qr" type="button" data-q={o.q}>{o.chip}</button>)}
   </div>
 
   <div class="msgs">
     <div class="bubble user step" data-step="user">{options[0].q}</div>
 
     <div class="tool step" data-step="t1">
-      <span class="ticon">🔎</span><span class="tname num">searchPrices</span>
-      <span class="tdesc">prix du jour · DAAF</span>
+      <span class="ticon">🔎</span><span class="tlabel">Je regarde les prix du jour</span>
       <span class="spin" aria-hidden="true"></span><span class="tcheck">✓</span>
     </div>
     <div class="tool step" data-step="t2">
-      <span class="ticon">🧺</span><span class="tname num">proposeBasket</span>
-      <span class="tdesc">panier au meilleur prix</span>
+      <span class="ticon">🧺</span><span class="tlabel">Je compose ton panier</span>
       <span class="spin" aria-hidden="true"></span><span class="tcheck">✓</span>
     </div>
 
@@ -53,8 +60,7 @@ const options = [
     </div>
 
     <div class="tool step" data-step="t3">
-      <span class="ticon">📖</span><span class="tname num">loadSkill</span>
-      <span class="tdesc">recette « rougail saucisse »</span>
+      <span class="ticon">📖</span><span class="tlabel">Je trouve la recette</span>
       <span class="spin" aria-hidden="true"></span><span class="tcheck">✓</span>
     </div>
 
@@ -64,10 +70,6 @@ const options = [
     </div>
 
     <div class="typing" aria-hidden="true"><span></span><span></span><span></span></div>
-  </div>
-
-  <div class="quick" id="chatquick">
-    {options.map((o) => <button class="qr" type="button" data-q={o.q}>{o.chip}</button>)}
   </div>
 </div>
 
@@ -79,16 +81,20 @@ const options = [
   .chat-sub { font-size: 11px; color: var(--ink-soft); }
   .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--leaf); margin-right: 4px; }
 
-  .msgs { display: flex; flex-direction: column; gap: var(--sp-sm); padding: var(--sp-lg); min-height: 140px; }
+  .quick { display: flex; flex-wrap: wrap; gap: var(--sp-sm); padding: var(--sp-md); border-bottom: 1px solid var(--ink-line); background: var(--cream-low); }
+  .qr { font: inherit; font-size: 13px; font-weight: 600; color: var(--mango-deep); background: var(--paper); border: 1px solid var(--ink-line); border-radius: var(--radius-pill); padding: 6px var(--sp-md); cursor: pointer; transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease; }
+  .qr:hover { transform: translateY(-1px); }
+  .qr.active { background: var(--mango); color: var(--ink); border-color: var(--mango); }
+
+  .msgs { display: flex; flex-direction: column; gap: var(--sp-sm); padding: var(--sp-lg); min-height: 150px; }
   .bubble { max-width: 88%; padding: var(--sp-sm) var(--sp-md); border-radius: 16px; font-size: 14px; line-height: 1.5; }
   .user { align-self: flex-end; background: var(--mango); color: var(--ink); font-weight: 600; border-bottom-right-radius: 4px; }
   .bot { align-self: flex-start; background: var(--cream-low); border: 1px solid var(--ink-line); border-bottom-left-radius: 4px; }
   .steps { display: block; margin-top: var(--sp-sm); color: var(--ink-soft); }
 
-  .tool { align-self: flex-start; max-width: 94%; display: flex; align-items: center; gap: var(--sp-sm); font-size: 12px; color: var(--ink-soft); background: var(--cream-low); border: 1px dashed var(--ink-line); border-radius: var(--radius-pill); padding: 5px 12px; }
+  .tool { align-self: flex-start; max-width: 94%; display: flex; align-items: center; gap: var(--sp-sm); font-size: 13px; color: var(--ink-soft); background: var(--cream-low); border: 1px dashed var(--ink-line); border-radius: var(--radius-pill); padding: 6px 12px; }
   .ticon { flex: none; }
-  .tname { font-family: var(--font-mono); font-weight: 600; color: var(--mango-deep); flex: none; }
-  .tdesc { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tlabel { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .tcheck { margin-left: auto; color: var(--leaf); font-weight: 700; flex: none; }
   .spin { margin-left: auto; flex: none; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--ink-line); border-top-color: var(--mango-deep); animation: spin 0.7s linear infinite; display: none; }
 
@@ -106,14 +112,8 @@ const options = [
   .typing span:nth-child(2) { animation-delay: 0.15s; }
   .typing span:nth-child(3) { animation-delay: 0.3s; }
 
-  .quick { display: flex; flex-wrap: wrap; gap: var(--sp-sm); padding: var(--sp-md); border-top: 1px solid var(--ink-line); background: var(--cream-low); }
-  .qr { font: inherit; font-size: 13px; font-weight: 600; color: var(--mango-deep); background: var(--paper); border: 1px solid var(--ink-line); border-radius: var(--radius-pill); padding: 6px var(--sp-md); cursor: pointer; transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease; }
-  .qr:hover { transform: translateY(-1px); }
-  .qr.active { background: var(--mango); color: var(--ink); border-color: var(--mango); }
-
-  /* Mode interactif : on masque les messages, on les révèle en séquence. */
-  .chat.is-interactive .step, .chat.is-interactive .typing { display: none; }
-  .chat.is-interactive .step.show { display: flex; animation: msgIn 0.3s ease; }
+  .chat.is-interactive .step:not(.show) { display: none; }
+  .chat.is-interactive .step.show { animation: msgIn 0.3s ease; }
   .chat.is-interactive .typing.show { display: flex; }
   .tool.done .spin { display: none; }
   .chat.is-interactive .tool.show:not(.done) .tcheck { display: none; }
@@ -141,30 +141,24 @@ const options = [
       typing.classList.remove('show')
     }
     async function play(q, chip) {
-      const my = ++token // toute nouvelle action annule la précédente
+      const my = ++token
       chips.forEach((c) => c.classList.toggle('active', c === chip))
       reset()
       step('user').textContent = q
       step('user').classList.add('show'); await wait(450); if (my !== token) return
-      // tool 1
       step('t1').classList.add('show'); await wait(820); if (my !== token) return
       step('t1').classList.add('done'); await wait(220); if (my !== token) return
-      // tool 2
       step('t2').classList.add('show'); await wait(820); if (my !== token) return
       step('t2').classList.add('done'); await wait(220); if (my !== token) return
-      // réflexion + panier
       msgs.appendChild(typing); typing.classList.add('show'); await wait(520); if (my !== token) return
       typing.classList.remove('show'); step('basket').classList.add('show'); await wait(560); if (my !== token) return
-      // tool 3
       step('t3').classList.add('show'); await wait(820); if (my !== token) return
       step('t3').classList.add('done'); await wait(220); if (my !== token) return
-      // réflexion + recette
       msgs.appendChild(typing); typing.classList.add('show'); await wait(520); if (my !== token) return
       typing.classList.remove('show'); step('recipe').classList.add('show')
     }
 
     chips.forEach((c) => c.addEventListener('click', () => play(c.dataset.q, c)))
-    // autoplay une fois à l'entrée dans le viewport (1re option)
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { io.disconnect(); play(chips[0].dataset.q, chips[0]) }
     }, { threshold: 0.5 })
