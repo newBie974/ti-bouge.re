@@ -1,0 +1,57 @@
+---
+import Section from './Section.astro'
+interface Props { bg?: 'cream' | 'low' | 'paper' }
+const { bg = 'cream' } = Astro.props
+const faqs = [
+  {
+    q: 'Est-ce que Ti Boug est gratuit ?',
+    a: "Oui. Consulter le Bazar du jour et les prix des fruits & légumes est gratuit, sans créer de compte. Le Panier IA offre 2 essais gratuits, puis passe en Premium pour un usage illimité.",
+  },
+  {
+    q: 'D’où viennent les prix des fruits & légumes ?',
+    a: "Des mercuriales officielles publiées par la DAAF Réunion (Direction de l'alimentation, de l'agriculture et de la forêt), en open data sous licence etalab 2.0. Ti Boug ne fixe ni n'invente aucun prix : les relevés sont vérifiables à la source, avec la date affichée.",
+  },
+  {
+    q: 'Quels marchés sont couverts à La Réunion ?',
+    a: "Les mercuriales DAAF couvrent les marchés forains (Saint-Paul, Saint-Pierre, Saint-Denis…) et les grandes et moyennes surfaces. Ti Boug compare les deux pour indiquer où le panier est le plus avantageux.",
+  },
+  {
+    q: 'Qu’est-ce qu’une mercuriale DAAF ?',
+    a: "Une mercuriale est un relevé périodique et public des prix pratiqués sur les marchés. La DAAF Réunion la publie pour les fruits & légumes ; Ti Boug l'historise pour en extraire la tendance et la saisonnalité.",
+  },
+  {
+    q: 'L’assistant IA fait quoi exactement ?',
+    a: "Tu indiques ce que tu veux cuisiner ou ton budget, et l'IA compose un panier avec les produits de saison les moins chers du jour, puis propose des recettes péi (rougail, cari, achards…) avec le coût estimé.",
+  },
+  {
+    q: 'Est-ce disponible sur Android ?',
+    a: "Pour l'instant, Ti Boug est une application iPhone (iOS). Une version Android pourra suivre.",
+  },
+]
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
+---
+<Section id="faq" title="Questions fréquentes" bg={bg}>
+  <div class="faq">
+    {faqs.map((f) => (
+      <details class="item">
+        <summary>{f.q}</summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Section>
+<style>
+  .faq { max-width: 760px; }
+  .item { border-bottom: 1px solid var(--ink-line); padding: var(--sp-md) 0; }
+  summary { font-weight: 700; cursor: pointer; list-style-position: inside; }
+  .item p { margin-top: var(--sp-sm); color: var(--ink-soft); }
+</style>

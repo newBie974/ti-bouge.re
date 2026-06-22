@@ -1,9 +1,12 @@
 export const SITE = {
   name: 'Ti Boug — Bazar Péi',
   domain: 'https://tiboug.re',
+  // Titre SEO de la home (mot-clé + géo + marque).
+  homeTitle: 'Prix des fruits & légumes à La Réunion — Ti Boug',
+  // Meta description (mot-clé en tête + accroche + CTA), ~158 car.
   description:
-    'Sak i lé bon marché, kan, é ousa. Les prix des fruits & légumes à La Réunion, ' +
-    'la saisonnalité et un panier malin par IA. Données mercuriales DAAF.',
+    'Suivez les prix des fruits & légumes à La Réunion : tendance, saisonnalité et ' +
+    'meilleurs marchés forains, d’après les mercuriales DAAF. App iPhone, gratuite, sans compte.',
 } as const
 
 // L'app n'est pas encore confirmée publiée : placeholder. Remplacer par l'URL App Store réelle.

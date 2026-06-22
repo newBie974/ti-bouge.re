@@ -1,0 +1,33 @@
+# Ti Boug — Bazar Péi
+
+> Ti Boug (aussi appelé Bazar Péi) est une application mobile iPhone (iOS) pour La Réunion qui aide à lutter contre la vie chère sur les fruits & légumes. Elle affiche les prix du jour, leur tendance (hausse/baisse), leur saisonnalité et les meilleurs marchés, à partir des mercuriales publiques de la DAAF Réunion (open data, licence etalab 2.0), et compose un panier au meilleur prix avec un assistant IA.
+
+## Faits clés
+
+- Nom : Ti Boug — Bazar Péi
+- Promesse : « Sak i lé bon marché, kan, é ousa » (ce qui est bon marché, quand, et où).
+- Zone : La Réunion (974), France.
+- Plateforme : iPhone / iOS (Android non disponible pour l'instant).
+- Prix : gratuit, sans création de compte, pour consulter les prix et le Bazar du jour. Assistant IA : 2 paniers gratuits, puis abonnement Premium pour un usage illimité.
+- Source des données : mercuriales officielles de la DAAF Réunion (Direction de l'alimentation, de l'agriculture et de la forêt), open data sous licence etalab 2.0. L'app ne fixe ni n'invente aucun prix ; la date réelle du relevé est toujours affichée.
+- Couverture : marchés forains (Saint-Paul, Saint-Pierre, Saint-Denis…) et grandes et moyennes surfaces.
+
+## Fonctionnalités
+
+- Bazar du jour : prix du jour par produit, tendance colorée (vert = baisse = bonne nouvelle pour l'acheteur, rouge = hausse), et saisonnalité.
+- Saisonnalité : pleine saison signalée par produit, extraite de l'historique des mercuriales.
+- Assistant IA (panier) : compose un panier au meilleur prix selon les produits de saison les moins chers du jour et un budget donné.
+- Recettes IA : propose de vraies recettes péi (rougail, cari, achards, gratin chouchou…) à partir du panier, avec quantités et coût estimé.
+
+## Liens
+
+- Site : https://tiboug.re/
+- Mentions légales : https://tiboug.re/mentions-legales
+- Source officielle des prix (DAAF Réunion) : https://daaf.reunion.agriculture.gouv.fr/
+- Licence des données (etalab 2.0) : https://www.etalab.gouv.fr/licence-ouverte-open-licence/
+
+## Glossaire
+
+- Mercuriale : relevé périodique et public des prix pratiqués sur les marchés.
+- DAAF : Direction de l'alimentation, de l'agriculture et de la forêt (services de l'État).
+- Péi / kréol : « du pays », réunionnais.

@@ -7,6 +7,7 @@ import BazarPreview from '../components/BazarPreview.astro'
 import PublicData from '../components/PublicData.astro'
 import PremiumAI from '../components/PremiumAI.astro'
 import RecipesAI from '../components/RecipesAI.astro'
+import Faq from '../components/Faq.astro'
 import Attribution from '../components/Attribution.astro'
 import { SITE } from '../config'
 
@@ -21,16 +22,17 @@ const tickerItems = [
   { name: 'Banane', price: '2,20 €/kg', trend: 'up' },
 ] as const
 ---
-<Layout title={SITE.name} description={SITE.description}>
+<Layout title={SITE.homeTitle} description={SITE.description}>
   <header class="hero">
     <div class="container hero-grid">
       <div class="hero-text">
-        <p class="kicker num">Bonzour 👋 La Réunion</p>
+        <p class="kicker num">Bonzour 👋 La Réunion · l'app kont la vie chère</p>
         <h1>Sak i lé bon marché,<br />kan, é ousa.</h1>
-        <p class="lede">Les prix des fruits & légumes à La Réunion, leur saisonnalité, et un panier malin composé par <strong>IA</strong> — à partir des mercuriales officielles.</p>
-        <AppStoreButton />
+        <p class="subhead">Les fruits & légumes les moins chers du jour, près de chez toi.</p>
+        <p class="lede">Prix réels à La Réunion, leur tendance et leur saison, et un panier malin composé par <strong>IA</strong> — à partir des mercuriales officielles de la DAAF.</p>
+        <AppStoreButton note={true} />
       </div>
-      <img class="hero-img" src="/welcome.png" alt="Ti Boug, la mascotte de Bazar Péi" width="500" height="500" />
+      <img class="hero-img" src="/welcome.png" alt="Ti Boug, la mascotte de l'app prix fruits & légumes Réunion" width="500" height="500" />
     </div>
   </header>
 
@@ -47,39 +49,36 @@ const tickerItems = [
 
   <Section id="probleme" title="La vie chère, légume par légume" bg="low">
     <div class="split">
-      <img class="split-img" src="/compare.png" alt="Comparer les prix" width="500" height="500" loading="lazy" />
+      <img class="split-img" src="/compare.png" alt="Comparer les prix des fruits & légumes à La Réunion" width="500" height="500" loading="lazy" />
       <div class="split-text">
         <p>À La Réunion, le prix des fruits & légumes varie fort d'une semaine et d'un marché à l'autre. Ti Boug te dit ce qui est bon marché aujourd'hui, quand c'est la pleine saison, et où l'acheter.</p>
       </div>
     </div>
   </Section>
 
-  <Section id="forain" title="Au marché forain" bg="cream">
+  <Section id="forain" title="Au marché forain : Saint-Paul, Saint-Pierre, Saint-Denis" bg="cream">
     <div class="split">
       <div class="split-text">
-        <p>À La Réunion, les meilleurs prix sur les fruits & légumes se trouvent souvent au <strong>marché forain</strong> — Saint-Paul, Saint-Pierre, Saint-Denis… Les mercuriales DAAF couvrent justement les marchés forains <em>et</em> les grandes surfaces : Ti Boug compare les deux et te montre où, aujourd'hui, le panier est le plus avantageux.</p>
+        <p>À La Réunion, les meilleurs prix sur les fruits & légumes se trouvent souvent au <strong>marché forain</strong>. Les mercuriales DAAF couvrent justement les marchés forains <em>et</em> les grandes surfaces : Ti Boug compare les deux et te montre où, aujourd'hui, le panier est le plus avantageux.</p>
       </div>
-      <img class="split-img" src="/market.png" alt="Marché forain péi" width="500" height="500" loading="lazy" />
+      <img class="split-img" src="/market.png" alt="Marché forain à La Réunion (Saint-Paul, Saint-Pierre)" width="500" height="500" loading="lazy" />
     </div>
   </Section>
-
-  <Section id="comment" title="Comment ça marche" bg="low">
-    <p>Chaque jour, on lit les mercuriales de la DAAF Réunion, on les historise, et on en extrait la saisonnalité. La date réelle de cotation est toujours affichée — <strong>honnêteté sur la fraîcheur</strong>.</p>
-    <p class="price-down num">Prix en baisse = bonne nouvelle (vert) · prix en hausse = alerte (rouge).</p>
-  </Section>
-
-  <PublicData bg="cream" />
 
   <PremiumAI bg="low" />
 
   <RecipesAI bg="cream" />
 
-  <Section id="apercu" title="L'app" bg="low">
+  <PublicData bg="low" />
+
+  <Faq bg="cream" />
+
+  <Section id="apercu" title="L'app, sur iPhone" bg="low">
     <div class="split">
-      <img class="split-img small" src="/avatar.png" alt="Avatar Ti Boug" width="500" height="500" loading="lazy" />
+      <img class="split-img small" src="/avatar.png" alt="Ti Boug — app prix marché Réunion" width="500" height="500" loading="lazy" />
       <div class="split-text">
         <p>Disponible sur iPhone. Conçue pour La Réunion, en français et en kréol.</p>
-        <AppStoreButton />
+        <AppStoreButton note={true} />
       </div>
     </div>
   </Section>
@@ -90,6 +89,10 @@ const tickerItems = [
       <p class="num">© {SITE.name} · <a href="/mentions-legales">Mentions légales</a></p>
     </div>
   </footer>
+
+  <div class="sticky-cta">
+    <AppStoreButton />
+  </div>
 </Layout>
 
 <style>
@@ -98,12 +101,22 @@ const tickerItems = [
   .hero-text { flex: 1 1 340px; }
   .hero-img { width: 320px; height: 320px; object-fit: contain; flex: none; max-width: 100%; }
   .kicker { font-size: 13px; color: var(--mango-deep); margin-bottom: var(--sp-md); }
-  h1 { font-size: clamp(36px, 8vw, 64px); margin-bottom: var(--sp-lg); }
-  .lede { font-size: 18px; color: var(--ink-soft); max-width: 38ch; margin-bottom: var(--sp-xl); }
+  h1 { font-size: clamp(36px, 8vw, 64px); margin-bottom: var(--sp-md); }
+  .subhead { font-family: var(--font-body); font-weight: 700; font-size: clamp(18px, 3vw, 22px); margin-bottom: var(--sp-md); }
+  .lede { font-size: 18px; color: var(--ink-soft); max-width: 40ch; margin-bottom: var(--sp-xl); }
   .split { display: flex; gap: var(--sp-xxl); align-items: flex-start; flex-wrap: wrap; }
   .split-text { flex: 1 1 320px; }
   .split-img { width: 240px; height: 240px; object-fit: contain; flex: none; }
   .split-img.small { width: 160px; height: 160px; }
   .footer { padding: var(--sp-xxl) 0; border-top: 1px solid var(--ink-line); }
   .footer p { font-size: 12px; color: var(--ink-soft); margin-top: var(--sp-sm); }
+
+  /* CTA collant — mobile uniquement */
+  .sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    display: none; justify-content: center;
+    padding: var(--sp-sm); background: rgba(255, 248, 242, 0.92);
+    border-top: 1px solid var(--ink-line); backdrop-filter: blur(6px);
+  }
+  @media (max-width: 760px) { .sticky-cta { display: flex; } }
 </style>

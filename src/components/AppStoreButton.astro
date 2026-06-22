@@ -1,10 +1,19 @@
 ---
 import { APP_STORE_URL } from '../config'
-interface Props { label?: string }
-const { label = "Télécharger sur l'App Store" } = Astro.props
+interface Props { label?: string; note?: boolean }
+const { label = "Télécharger sur l'App Store", note = false } = Astro.props
+// Tant que l'URL App Store n'est pas renseignée ('#'), on affiche un badge pré-lancement
+// non cliquable (« Bientôt sur l'App Store ») au lieu d'un lien mort.
+const pending = APP_STORE_URL === '#'
 ---
-<a class="cta" href={APP_STORE_URL}>{label}</a>
+<div class="cta-wrap">
+  {pending
+    ? <span class="cta cta-pending">🍎 Bientôt sur l'App Store</span>
+    : <a class="cta" href={APP_STORE_URL}>{label}</a>}
+  {note && <span class="cta-note num">Gratuit, sans compte</span>}
+</div>
 <style>
+  .cta-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-md); }
   .cta {
     display: inline-block;
     background: var(--mango);
@@ -15,5 +24,7 @@ const { label = "Télécharger sur l'App Store" } = Astro.props
     padding: var(--sp-md) var(--sp-xl);
     border-radius: var(--radius-pill);
   }
-  .cta:hover { background: var(--mango-deep); color: var(--paper); }
+  a.cta:hover { background: var(--mango-deep); color: var(--paper); }
+  .cta-pending { cursor: default; }
+  .cta-note { font-size: 12px; color: var(--ink-soft); }
 </style>
