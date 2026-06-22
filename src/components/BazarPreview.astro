@@ -33,9 +33,10 @@ const rows = [
     padding: var(--sp-xl);
     box-shadow: 0 6px 24px rgba(30, 27, 22, 0.08);
     border: 1px solid var(--ink-line);
+    width: 100%;
     max-width: 420px;
   }
-  .card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-lg); }
+  .card-head { display: flex; flex-wrap: wrap; gap: var(--sp-sm); justify-content: space-between; align-items: center; margin-bottom: var(--sp-lg); }
   .card-title { font-family: var(--font-display); font-weight: 800; font-size: 18px; }
   .chip {
     font-size: 11px; color: var(--ink-soft);
@@ -44,7 +45,7 @@ const rows = [
   }
   .rows { list-style: none; }
   .row { display: flex; align-items: baseline; padding: var(--sp-sm) 0; gap: var(--sp-sm); }
-  .name { font-weight: 500; white-space: nowrap; }
+  .name { font-weight: 500; white-space: nowrap; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .leader { flex: 1; border-bottom: 2px dotted var(--ink-line); transform: translateY(-3px); }
   .price { white-space: nowrap; font-weight: 600; }
   .price-flat { color: var(--ink-soft); }

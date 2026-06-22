@@ -19,7 +19,11 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   position: relative;
+  overflow-wrap: break-word;
 }
+/* Les longs tokens (URLs, e-mails) cassent au lieu de déborder. */
+a { overflow-wrap: anywhere; }
+img { max-width: 100%; }
 
 /* Atmosphère « data terminal » : fines lignes de grille verticales + grain papier,
    très subtiles, fixes, non interactives. */

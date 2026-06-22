@@ -74,7 +74,7 @@ const basket = [
   .card { margin-top: var(--sp-sm); background: var(--paper); border: 1px solid var(--ink-line); border-radius: var(--radius-md); padding: var(--sp-sm) var(--sp-md); }
   .card ul { list-style: none; }
   .row { display: flex; align-items: baseline; gap: var(--sp-sm); padding: 3px 0; font-size: 13px; }
-  .bn { white-space: nowrap; }
+  .bn { white-space: nowrap; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .lead { flex: 1; border-bottom: 2px dotted var(--ink-line); transform: translateY(-3px); }
   .bp { white-space: nowrap; font-weight: 600; }
   .total { border-top: 1px solid var(--ink-line); margin-top: 4px; padding-top: var(--sp-sm); }
