@@ -1,17 +1,56 @@
 ---
+import Layout from '../layouts/Layout.astro'
+import Section from '../components/Section.astro'
+import AppStoreButton from '../components/AppStoreButton.astro'
+import Ticker from '../components/Ticker.astro'
+import Attribution from '../components/Attribution.astro'
+import { SITE } from '../config'
 
+const tickerItems = ['Tomate 2,40 €/kg ▾', 'Mangue 3,10 €/kg ▾', 'Brèdes 1,80 €/botte', 'Letchi 4,50 €/kg ▴', 'Songe 2,90 €/kg']
 ---
+<Layout title={SITE.name} description={SITE.description}>
+  <header class="hero">
+    <div class="container">
+      <p class="kicker num">Bonzour 👋 La Réunion</p>
+      <h1>Sak i lé bon marché,<br />kan, é ousa.</h1>
+      <p class="lede">Les prix des fruits & légumes à La Réunion, leur saisonnalité, et un panier malin composé par IA — à partir des mercuriales officielles.</p>
+      <AppStoreButton />
+    </div>
+  </header>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <Ticker items={tickerItems} />
+
+  <Section id="probleme" title="La vie chère, légume par légume">
+    <p>À La Réunion, le prix des fruits & légumes varie fort d'une semaine et d'un marché à l'autre. Ti Boug te dit ce qui est bon marché aujourd'hui, quand c'est la pleine saison, et où.</p>
+  </Section>
+
+  <Section id="comment" title="Comment ça marche">
+    <p>Chaque jour, on lit les mercuriales de la DAAF Réunion, on les historise, et on en extrait la saisonnalité. La date réelle de cotation est toujours affichée — <strong>honnêteté sur la fraîcheur</strong>.</p>
+    <p class="price-down num">Prix en baisse = bonne nouvelle (vert) · prix en hausse = alerte (rouge).</p>
+  </Section>
+
+  <Section id="ia" title="Kosa ou i vé manzé ?">
+    <p>L'assistant IA compose un panier selon les prix du jour : tu dis ce que tu veux manger, il te propose les produits les moins chers et de saison.</p>
+  </Section>
+
+  <Section id="apercu" title="L'app">
+    <p>Disponible sur iPhone. Conçue pour La Réunion, en français et en kréol.</p>
+    <AppStoreButton />
+  </Section>
+
+  <footer class="footer">
+    <div class="container">
+      <Attribution />
+      <p class="num">© {SITE.name} · <a href="/mentions-legales">Mentions légales</a></p>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .hero { padding: var(--sp-huge) 0; }
+  .kicker { font-size: 13px; color: var(--mango-deep); margin-bottom: var(--sp-md); }
+  h1 { font-size: clamp(36px, 8vw, 64px); margin-bottom: var(--sp-lg); }
+  .lede { font-size: 18px; color: var(--ink-soft); max-width: 36ch; margin-bottom: var(--sp-xl); }
+  .footer { padding: var(--sp-xxl) 0; border-top: 1px solid var(--ink-line); }
+  .footer p { font-size: 12px; color: var(--ink-soft); margin-top: var(--sp-sm); }
+</style>

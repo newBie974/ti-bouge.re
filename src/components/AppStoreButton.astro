@@ -1,7 +1,7 @@
 ---
 import { APP_STORE_URL } from '../config'
 interface Props { label?: string }
-const { label = 'Télécharger sur l'App Store' } = Astro.props
+const { label = "Télécharger sur l'App Store" } = Astro.props
 ---
 <a class="cta" href={APP_STORE_URL}>{label}</a>
 <style>
