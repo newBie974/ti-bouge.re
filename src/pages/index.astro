@@ -10,7 +10,16 @@ import RecipesAI from '../components/RecipesAI.astro'
 import Attribution from '../components/Attribution.astro'
 import { SITE } from '../config'
 
-const tickerItems = ['Tomate 2,40 €/kg ▾', 'Mangue 3,10 €/kg ▾', 'Brèdes 1,80 €/botte', 'Letchi 4,50 €/kg ▴', 'Songe 2,90 €/kg']
+const tickerItems = [
+  { name: 'Tomate', price: '2,40 €/kg', trend: 'down' },
+  { name: 'Mangue', price: '3,10 €/kg', trend: 'down' },
+  { name: 'Brèdes', price: '1,80 €/botte', trend: 'flat' },
+  { name: 'Letchi', price: '4,50 €/kg', trend: 'up' },
+  { name: 'Songe', price: '2,90 €/kg', trend: 'flat' },
+  { name: 'Oignon', price: '1,60 €/kg', trend: 'down' },
+  { name: 'Chouchou', price: '1,20 €/kg', trend: 'down' },
+  { name: 'Banane', price: '2,20 €/kg', trend: 'up' },
+] as const
 ---
 <Layout title={SITE.name} description={SITE.description}>
   <header class="hero">
@@ -18,7 +27,7 @@ const tickerItems = ['Tomate 2,40 €/kg ▾', 'Mangue 3,10 €/kg ▾', 'Brède
       <div class="hero-text">
         <p class="kicker num">Bonzour 👋 La Réunion</p>
         <h1>Sak i lé bon marché,<br />kan, é ousa.</h1>
-        <p class="lede">Les prix des fruits & légumes à La Réunion, leur saisonnalité, et un panier malin composé par IA — à partir des mercuriales officielles.</p>
+        <p class="lede">Les prix des fruits & légumes à La Réunion, leur saisonnalité, et un panier malin composé par <strong>IA</strong> — à partir des mercuriales officielles.</p>
         <AppStoreButton />
       </div>
       <img class="hero-img" src="/welcome.png" alt="Ti Boug, la mascotte de Bazar Péi" width="500" height="500" />
