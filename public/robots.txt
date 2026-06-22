@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tiboug.re/sitemap-index.xml

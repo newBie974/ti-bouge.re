@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Section from '../components/Section.astro'
+import Attribution from '../components/Attribution.astro'
+import { SITE } from '../config'
+---
+<Layout title={`Mentions légales — ${SITE.name}`} description="Mentions légales et attribution des données.">
+  <Section id="legal" title="Mentions légales">
+    <p>{SITE.name}. Application d'information sur les prix des fruits & légumes à La Réunion.</p>
+    <p>Les données de prix proviennent des mercuriales publiées par la DAAF Réunion, réutilisées sous licence etalab 2.0.</p>
+    <Attribution />
+    <p><a href="/">← Retour</a></p>
+  </Section>
+</Layout>
