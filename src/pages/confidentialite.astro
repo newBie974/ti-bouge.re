@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Section from '../components/Section.astro'
+---
+<Layout
+  title="Politique de confidentialité — Ti Boug"
+  description="Politique de confidentialité de Ti Boug — Bazar Péi : quelles données sont traitées, comment, et tes droits."
+>
+  <Section id="privacy" title="Politique de confidentialité">
+    <div class="legal">
+      <p class="num updated">Dernière mise à jour : juin 2026</p>
+
+      <p>Ti Boug — Bazar Péi (« l'app ») est éditée par <strong>SowDev</strong>. Cette politique explique quelles données sont traitées et comment.</p>
+
+      <h3>Consultation sans compte</h3>
+      <p>Consulter le Bazar du jour et les prix des fruits & légumes ne nécessite aucun compte ni aucune donnée personnelle.</p>
+
+      <h3>Compte (optionnel)</h3>
+      <p>Certaines fonctions (alertes, favoris, panier) demandent une connexion, proposée d'abord via « Sign in with Apple ». On traite alors un identifiant de compte et, le cas échéant, l'adresse e-mail relayée par Apple, uniquement pour faire fonctionner ces fonctions.</p>
+
+      <h3>Assistant IA</h3>
+      <p>Quand tu utilises l'assistant IA, tes messages sont envoyés à un service d'intelligence artificielle tiers pour générer les réponses. Évite d'y saisir des informations sensibles. L'app affiche un écran de consentement avant le premier usage de l'IA.</p>
+
+      <h3>Abonnement Premium</h3>
+      <p>Les achats et abonnements sont gérés par l'App Store d'Apple (via RevenueCat). Nous ne collectons ni ne stockons tes coordonnées bancaires.</p>
+
+      <h3>Données de prix</h3>
+      <p>Les prix proviennent des mercuriales publiques de la DAAF Réunion (open data, licence etalab 2.0) : ce ne sont pas des données personnelles.</p>
+
+      <h3>Pas de revente</h3>
+      <p>Nous ne vendons pas tes données et ne les partageons pas à des fins publicitaires.</p>
+
+      <h3>Tes droits</h3>
+      <p>Conformément au RGPD, tu peux demander l'accès, la rectification ou la suppression de tes données en écrivant à <a href="mailto:contact@tiboug.re">contact@tiboug.re</a>.</p>
+
+      <p><a href="/">← Retour à l'accueil</a></p>
+    </div>
+  </Section>
+</Layout>
+<style>
+  .legal { max-width: 720px; }
+  .legal h3 { font-size: 18px; margin-top: var(--sp-xl); margin-bottom: var(--sp-sm); }
+  .legal p { margin-bottom: var(--sp-md); color: var(--ink-soft); }
+  .legal a { color: var(--mango-deep); }
+  .updated { font-size: 12px; }
+</style>

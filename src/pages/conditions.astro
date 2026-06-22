@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Section from '../components/Section.astro'
+---
+<Layout
+  title="Conditions d'utilisation — Ti Boug"
+  description="Conditions d'utilisation de Ti Boug — Bazar Péi : objet du service, données indicatives, abonnement et responsabilité."
+>
+  <Section id="terms" title="Conditions d'utilisation">
+    <div class="legal">
+      <p class="num updated">Dernière mise à jour : juin 2026</p>
+
+      <p>En utilisant Ti Boug — Bazar Péi (« l'app »), éditée par <strong>SowDev</strong>, tu acceptes les présentes conditions.</p>
+
+      <h3>Objet</h3>
+      <p>L'app fournit, à titre informatif, les prix des fruits & légumes à La Réunion, leur tendance et leur saisonnalité, ainsi qu'un assistant de composition de panier.</p>
+
+      <h3>Données indicatives</h3>
+      <p>Les prix sont issus des mercuriales publiques de la DAAF Réunion et fournis « tels quels ». Ils sont indicatifs, peuvent varier selon les points de vente et les dates, et doivent être vérifiés sur place ou à la source. Nous ne garantissons ni l'exactitude, ni l'exhaustivité, ni la disponibilité continue des données.</p>
+
+      <h3>Assistant IA</h3>
+      <p>Les réponses de l'assistant sont générées par une intelligence artificielle et peuvent comporter des erreurs. Vérifie toujours les informations importantes (prix, dates, quantités).</p>
+
+      <h3>Abonnement Premium</h3>
+      <p>L'usage de base est gratuit. L'assistant IA offre des essais gratuits, puis nécessite un abonnement Premium. Les abonnements sont souscrits et gérés via l'App Store d'Apple, selon ses conditions (renouvellement automatique, gestion et résiliation depuis ton compte Apple).</p>
+
+      <h3>Usage acceptable</h3>
+      <p>L'app est destinée à un usage personnel. Toute extraction massive, revente des données ou usage abusif est interdit.</p>
+
+      <h3>Propriété intellectuelle</h3>
+      <p>L'app, sa marque et ses contenus appartiennent à SowDev. Les données de prix restent sous licence etalab 2.0 (DAAF Réunion).</p>
+
+      <h3>Responsabilité</h3>
+      <p>SowDev ne saurait être tenue responsable des décisions d'achat prises sur la base des informations fournies par l'app.</p>
+
+      <h3>Droit applicable</h3>
+      <p>Les présentes conditions sont régies par le droit français. Contact : <a href="mailto:contact@tiboug.re">contact@tiboug.re</a>.</p>
+
+      <p><a href="/">← Retour à l'accueil</a></p>
+    </div>
+  </Section>
+</Layout>
+<style>
+  .legal { max-width: 720px; }
+  .legal h3 { font-size: 18px; margin-top: var(--sp-xl); margin-bottom: var(--sp-sm); }
+  .legal p { margin-bottom: var(--sp-md); color: var(--ink-soft); }
+  .legal a { color: var(--mango-deep); }
+  .updated { font-size: 12px; }
+</style>

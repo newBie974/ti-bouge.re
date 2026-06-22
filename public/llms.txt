@@ -5,7 +5,7 @@
 ## Faits clés
 
 - Nom : Ti Boug — Bazar Péi
-- Promesse : « Sak i lé bon marché, kan, é ousa » (ce qui est bon marché, quand, et où).
+- Promesse : « Sak lé bon marché, ousa é kansa » (ce qui est bon marché, où et quand).
 - Zone : La Réunion (974), France.
 - Plateforme : iPhone / iOS (Android non disponible pour l'instant).
 - Prix : gratuit, sans création de compte, pour consulter les prix et le Bazar du jour. Assistant IA : 2 paniers gratuits, puis abonnement Premium pour un usage illimité.

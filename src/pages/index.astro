@@ -27,7 +27,7 @@ const tickerItems = [
     <div class="container hero-grid">
       <div class="hero-text">
         <p class="kicker num">Bonzour 👋 La Réunion · l'app kont la vie chère</p>
-        <h1>Sak i lé bon marché,<br />kan, é ousa.</h1>
+        <h1>Sak lé bon marché,<br />ousa é kansa.</h1>
         <p class="subhead">Les fruits & légumes les moins chers du jour, près de chez toi.</p>
         <p class="lede">Prix réels à La Réunion, leur tendance et leur saison, et un panier malin composé par <strong>IA</strong> — à partir des mercuriales officielles de la DAAF.</p>
         <AppStoreButton note={true} />
@@ -86,7 +86,12 @@ const tickerItems = [
   <footer class="footer">
     <div class="container">
       <Attribution />
-      <p class="num">© {SITE.name} · <a href="/mentions-legales">Mentions légales</a></p>
+      <nav class="footer-links num">
+        <a href="/mentions-legales">Mentions légales</a> ·
+        <a href="/confidentialite">Confidentialité</a> ·
+        <a href="/conditions">Conditions d'utilisation</a>
+      </nav>
+      <p class="num copyright">© 2026 SowDev. Tous droits réservés.</p>
     </div>
   </footer>
 
@@ -110,6 +115,9 @@ const tickerItems = [
   .split-img.small { width: 160px; height: 160px; }
   .footer { padding: var(--sp-xxl) 0; border-top: 1px solid var(--ink-line); }
   .footer p { font-size: 12px; color: var(--ink-soft); margin-top: var(--sp-sm); }
+  .footer-links { font-size: 12px; margin-top: var(--sp-md); }
+  .footer-links a { color: var(--mango-deep); }
+  .copyright { margin-top: var(--sp-sm); }
 
   /* CTA collant — mobile uniquement */
   .sticky-cta {
