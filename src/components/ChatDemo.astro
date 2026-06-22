@@ -1,23 +1,64 @@
 ---
-// Démo INTERACTIVE : 3 options cliquables (en haut). Au clic → message utilisateur, Ti Boug
-// « réfléchit » puis enchaîne ses étapes (faux chargement spinner → ✓), panier, puis recette.
-// Séquence toujours identique (effet wouaou). Rejouable. Sans JS : tout s'affiche (fallback).
-const basket = [
-  { name: 'Saucisses fumées', price: '4,90 €', down: false },
-  { name: 'Tomates (500 g)', price: '1,20 €', down: true },
-  { name: 'Oignons', price: '0,60 €', down: false },
-  { name: 'Ail · gingembre · piment', price: '0,80 €', down: false },
+// Démo INTERACTIVE : 3 options en haut → 3 scénarios DIFFÉRENTS (message, panier, recette).
+// Au clic : message utilisateur, Ti Boug « réfléchit » (étapes avec faux chargement spinner → ✓),
+// puis panier + recette propres au scénario. Rejouable. Sans JS : le 1er scénario s'affiche.
+const SCENARIOS = [
+  {
+    chip: 'Rougail saucisse 🌶️',
+    q: 'Fé moin in rougail saucisse pou 4 🌶️',
+    line: 'Voilà ton panié pou 4 personnes :',
+    basket: [
+      { n: 'Saucisses fumées', p: '4,90 €', d: false },
+      { n: 'Tomates (500 g)', p: '1,20 €', d: true },
+      { n: 'Oignons', p: '0,60 €', d: false },
+      { n: 'Ail · gingembre · piment', p: '0,80 €', d: false },
+    ],
+    total: '≈ 7,50 € · 1,90 €/pers',
+    title: 'Rougail saucisse',
+    steps: [
+      'Fé bouï les saucisses 10 min, koup an rondèl.',
+      "Roussi l'oignon, ajout tomate, ail, gingembre, piment.",
+      'Mélanz les saucisses, kui 15 min. Ansanm èk du riz é grin. 💚',
+    ],
+  },
+  {
+    chip: 'Plat pas cher ce soir 🍛',
+    q: 'In plat pa shé pou ce soir, kosa ou propoz ? 🍛',
+    line: 'Pou pa shé ce soir, in bon cari poulet :',
+    basket: [
+      { n: 'Cuisses de poulet', p: '3,90 €', d: true },
+      { n: 'Tomates (500 g)', p: '1,20 €', d: true },
+      { n: 'Oignons', p: '0,60 €', d: false },
+      { n: 'Curcuma · ail · thym', p: '0,90 €', d: false },
+    ],
+    total: '≈ 6,60 € · 1,65 €/pers',
+    title: 'Cari poulet',
+    steps: [
+      "Roussi l'oignon avèk le curcuma.",
+      'Ajout le poulet, fé dorer 5 min.',
+      "Tomate, ail, thym, in vèr d'dlo, kui 25 min. Ansanm èk du riz. 💚",
+    ],
+  },
+  {
+    chip: 'Kosa lé bon marché ? 💸',
+    q: 'Kosa lé bon marché ojordi ? 💸',
+    line: 'Lé bons plans du jour — in achards avèk :',
+    basket: [
+      { n: 'Chou de Chine', p: '0,90 €', d: true },
+      { n: 'Carottes', p: '1,00 €', d: false },
+      { n: 'Chouchou', p: '0,80 €', d: true },
+      { n: 'Citron · gingembre', p: '0,70 €', d: false },
+    ],
+    total: '≈ 3,40 € · trè bon marché',
+    title: 'Achards légumes',
+    steps: [
+      'Émince fin les légumes, blanchi 2 min.',
+      'Fé revenir avèk curcuma, ail, gingembre, piman.',
+      "Ajout citron, sèl, l'huile. Lèss mariner. 💚",
+    ],
+  },
 ]
-const options = [
-  { chip: 'Rougail saucisse 🌶️', q: 'Fé moin in rougail saucisse pou 4 🌶️' },
-  { chip: 'Plat pas cher ce soir 🍛', q: 'In plat pa shé pou ce soir, kosa ou propoz ? 🍛' },
-  { chip: 'Kosa lé bon marché ? 💸', q: 'Kosa lé bon marché ojordi ? 💸' },
-]
-const steps = [
-  { id: 't1', icon: '🔎', label: 'Je regarde les prix du jour' },
-  { id: 't2', icon: '🧺', label: 'Je compose ton panier' },
-  { id: 't3', icon: '📖', label: 'Je trouve la recette' },
-]
+const s0 = SCENARIOS[0]
 ---
 <div class="chat" id="chatdemo">
   <div class="chat-head">
@@ -29,11 +70,11 @@ const steps = [
   </div>
 
   <div class="quick" id="chatquick">
-    {options.map((o) => <button class="qr" type="button" data-q={o.q}>{o.chip}</button>)}
+    {SCENARIOS.map((s, i) => <button class="qr" type="button" data-idx={i}>{s.chip}</button>)}
   </div>
 
   <div class="msgs">
-    <div class="bubble user step" data-step="user">{options[0].q}</div>
+    <div class="bubble user step" data-step="user">{s0.q}</div>
 
     <div class="tool step" data-step="t1">
       <span class="ticon">🔎</span><span class="tlabel">Je regarde les prix du jour</span>
@@ -45,17 +86,17 @@ const steps = [
     </div>
 
     <div class="bubble bot step" data-step="basket">
-      Voilà ton panié pou 4 personnes :
+      <span class="basketline">{s0.line}</span>
       <div class="card">
-        <ul>
-          {basket.map((b) => (
+        <ul class="basket-ul">
+          {s0.basket.map((b) => (
             <li class="row">
-              <span class="bn">{b.name}</span><span class="lead"></span>
-              <span class={`bp num ${b.down ? 'price-down' : ''}`}>{b.price}{b.down ? ' ▾' : ''}</span>
+              <span class="bn">{b.n}</span><span class="lead"></span>
+              <span class={`bp num ${b.d ? 'price-down' : ''}`}>{b.p}{b.d ? ' ▾' : ''}</span>
             </li>
           ))}
         </ul>
-        <div class="row total"><span class="bn">Total estimé</span><span class="lead"></span><span class="bp num">≈ 7,50 € · 1,90 €/pers</span></div>
+        <div class="row total basket-total"><span class="bn">Total estimé</span><span class="lead"></span><span class="bp num">{s0.total}</span></div>
       </div>
     </div>
 
@@ -65,8 +106,8 @@ const steps = [
     </div>
 
     <div class="bubble bot step" data-step="recipe">
-      <strong>Rougail saucisse</strong>
-      <span class="steps">1. Fé bouï les saucisses 10 min, koup an rondèl.<br />2. Roussi l'oignon, ajout tomate, ail, gingembre, piment.<br />3. Mélanz les saucisses, kui 15 min. Ansanm èk du riz é grin. 💚</span>
+      <strong class="recipe-title">{s0.title}</strong>
+      <span class="steps recipe-steps" set:html={s0.steps.map((st, i) => `${i + 1}. ${st}`).join('<br />')}></span>
     </div>
 
     <div class="typing" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -124,7 +165,7 @@ const steps = [
   @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 </style>
 
-<script>
+<script define:vars={{ scenarios: SCENARIOS }}>
   const chat = document.getElementById('chatdemo')
   if (chat) {
     chat.classList.add('is-interactive')
@@ -136,15 +177,25 @@ const steps = [
     const wait = (ms) => new Promise((r) => setTimeout(r, reduce ? Math.min(ms, 120) : ms))
     let token = 0
 
+    function fill(s) {
+      step('user').textContent = s.q
+      chat.querySelector('.basketline').textContent = s.line
+      chat.querySelector('.basket-ul').innerHTML = s.basket
+        .map((b) => `<li class="row"><span class="bn">${b.n}</span><span class="lead"></span><span class="bp num ${b.d ? 'price-down' : ''}">${b.p}${b.d ? ' ▾' : ''}</span></li>`)
+        .join('')
+      chat.querySelector('.basket-total .bp').textContent = s.total
+      chat.querySelector('.recipe-title').textContent = s.title
+      chat.querySelector('.recipe-steps').innerHTML = s.steps.map((st, i) => `${i + 1}. ${st}`).join('<br>')
+    }
     const reset = () => {
       ;['user', 't1', 't2', 'basket', 't3', 'recipe'].forEach((id) => step(id)?.classList.remove('show', 'done'))
       typing.classList.remove('show')
     }
-    async function play(q, chip) {
+    async function play(i, chip) {
       const my = ++token
       chips.forEach((c) => c.classList.toggle('active', c === chip))
       reset()
-      step('user').textContent = q
+      fill(scenarios[i])
       step('user').classList.add('show'); await wait(450); if (my !== token) return
       step('t1').classList.add('show'); await wait(820); if (my !== token) return
       step('t1').classList.add('done'); await wait(220); if (my !== token) return
@@ -158,9 +209,9 @@ const steps = [
       typing.classList.remove('show'); step('recipe').classList.add('show')
     }
 
-    chips.forEach((c) => c.addEventListener('click', () => play(c.dataset.q, c)))
+    chips.forEach((c, i) => c.addEventListener('click', () => play(i, c)))
     const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) { io.disconnect(); play(chips[0].dataset.q, chips[0]) }
+      for (const e of entries) if (e.isIntersecting) { io.disconnect(); play(0, chips[0]) }
     }, { threshold: 0.5 })
     io.observe(chat)
   }
