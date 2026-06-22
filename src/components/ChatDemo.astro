@@ -1,5 +1,6 @@
 ---
-// Démo statique du chat assistant (comme dans l'app). Conversation d'illustration : rougail saucisse.
+// Démo statique du chat assistant (comme dans l'app) : l'agent enchaîne ses 3 outils
+// (searchPrices → proposeBasket → loadSkill) pour répondre. Conversation d'illustration : rougail saucisse.
 const basket = [
   { name: 'Saucisses fumées', price: '4,90 €', down: false },
   { name: 'Tomates (500 g)', price: '1,20 €', down: true },
@@ -7,20 +8,34 @@ const basket = [
   { name: 'Ail · gingembre · piment', price: '0,80 €', down: false },
 ]
 ---
-<div class="chat" role="img" aria-label="Exemple de conversation avec l'assistant Ti Boug : recette de rougail saucisse et son panier au meilleur prix.">
+<div class="chat" role="img" aria-label="Conversation avec l'assistant Ti Boug : il enchaîne ses 3 outils (searchPrices, proposeBasket, loadSkill) pour proposer un rougail saucisse au meilleur prix.">
   <div class="chat-head">
     <img class="chat-av" src="/avatar.png" alt="" width="40" height="40" />
     <div>
       <p class="chat-name">Ti Boug</p>
-      <p class="chat-sub num"><span class="dot"></span> assistant marché · en ligne</p>
+      <p class="chat-sub num"><span class="dot"></span> assistant marché · 3 outils</p>
     </div>
   </div>
 
   <div class="msgs">
     <div class="bubble user">Fé moin in rougail saucisse pou 4, pa shé ! 🌶️</div>
 
+    <div class="tool">
+      <span class="ticon">🔎</span>
+      <span class="tname num">searchPrices</span>
+      <span class="tdesc">prix du jour · DAAF</span>
+      <span class="tcheck">✓</span>
+    </div>
+
+    <div class="tool">
+      <span class="ticon">🧺</span>
+      <span class="tname num">proposeBasket</span>
+      <span class="tdesc">panier au meilleur prix</span>
+      <span class="tcheck">✓</span>
+    </div>
+
     <div class="bubble bot">
-      Bon plan 💪 Avec les prix du jour, voilà ton panié :
+      Voilà ton panié pou 4 personnes :
       <div class="card">
         <ul>
           {basket.map((b) => (
@@ -37,6 +52,13 @@ const basket = [
           <span class="bp num">≈ 7,50 € · 1,90 €/pers</span>
         </div>
       </div>
+    </div>
+
+    <div class="tool">
+      <span class="ticon">📖</span>
+      <span class="tname num">loadSkill</span>
+      <span class="tdesc">recette « rougail saucisse »</span>
+      <span class="tcheck">✓</span>
     </div>
 
     <div class="bubble bot">
@@ -60,7 +82,7 @@ const basket = [
     overflow: hidden;
   }
   .chat-head { display: flex; align-items: center; gap: var(--sp-sm); padding: var(--sp-md) var(--sp-lg); border-bottom: 1px solid var(--ink-line); }
-  .chat-av { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--cream-low); object-fit: contain; }
+  .chat-av { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--cream-low); object-fit: contain; flex: none; }
   .chat-name { font-family: var(--font-display); font-weight: 800; font-size: 16px; }
   .chat-sub { font-size: 11px; color: var(--ink-soft); }
   .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--leaf); margin-right: 4px; }
@@ -71,16 +93,29 @@ const basket = [
   .bot { align-self: flex-start; background: var(--cream-low); border: 1px solid var(--ink-line); border-bottom-left-radius: 4px; }
   .steps { display: block; margin-top: var(--sp-sm); color: var(--ink-soft); }
 
+  /* Appels d'outils — style « terminal » : pastille pointillée, nom en mono, check vert. */
+  .tool {
+    align-self: flex-start; max-width: 94%;
+    display: flex; align-items: center; gap: var(--sp-sm);
+    font-size: 12px; color: var(--ink-soft);
+    background: var(--cream-low); border: 1px dashed var(--ink-line);
+    border-radius: var(--radius-pill); padding: 5px 12px;
+  }
+  .ticon { flex: none; }
+  .tname { font-family: var(--font-mono); font-weight: 600; color: var(--mango-deep); flex: none; }
+  .tdesc { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tcheck { margin-left: auto; color: var(--leaf); font-weight: 700; flex: none; }
+
   .card { margin-top: var(--sp-sm); background: var(--paper); border: 1px solid var(--ink-line); border-radius: var(--radius-md); padding: var(--sp-sm) var(--sp-md); }
   .card ul { list-style: none; }
   .row { display: flex; align-items: baseline; gap: var(--sp-sm); padding: 3px 0; font-size: 13px; }
   .bn { white-space: nowrap; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .lead { flex: 1; border-bottom: 2px dotted var(--ink-line); transform: translateY(-3px); }
-  .bp { white-space: nowrap; font-weight: 600; }
+  .bp { white-space: nowrap; font-weight: 600; flex: none; }
   .total { border-top: 1px solid var(--ink-line); margin-top: 4px; padding-top: var(--sp-sm); }
   .total .bn { font-weight: 700; }
 
   .chat-input { display: flex; align-items: center; gap: var(--sp-sm); padding: var(--sp-sm) var(--sp-md); border-top: 1px solid var(--ink-line); }
-  .ci-ph { flex: 1; font-size: 13px; color: var(--ink-soft); background: var(--cream-low); border-radius: var(--radius-pill); padding: var(--sp-sm) var(--sp-md); }
+  .ci-ph { flex: 1; min-width: 0; font-size: 13px; color: var(--ink-soft); background: var(--cream-low); border-radius: var(--radius-pill); padding: var(--sp-sm) var(--sp-md); }
   .ci-send { display: grid; place-items: center; width: 34px; height: 34px; border-radius: var(--radius-pill); background: var(--mango); color: var(--ink); flex: none; }
 </style>
